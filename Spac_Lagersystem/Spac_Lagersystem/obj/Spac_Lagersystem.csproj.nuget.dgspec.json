@@ -1,31 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\SPAC-25\\source\\repos\\Spac_Lagersystem\\Spac_Lagersystem\\Spac_Lagersystem.csproj": {}
+    "C:\\Users\\Spac-41\\Documents\\specialisterne\\projects\\inventory_tracker\\Spac_Lagersystem\\Spac_Lagersystem\\Spac_Lagersystem.csproj": {}
   },
   "projects": {
-    "C:\\Users\\SPAC-25\\source\\repos\\Spac_Lagersystem\\Spac_Lagersystem\\Spac_Lagersystem.csproj": {
+    "C:\\Users\\Spac-41\\Documents\\specialisterne\\projects\\inventory_tracker\\Spac_Lagersystem\\Spac_Lagersystem\\Spac_Lagersystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\SPAC-25\\source\\repos\\Spac_Lagersystem\\Spac_Lagersystem\\Spac_Lagersystem.csproj",
+        "projectUniqueName": "C:\\Users\\Spac-41\\Documents\\specialisterne\\projects\\inventory_tracker\\Spac_Lagersystem\\Spac_Lagersystem\\Spac_Lagersystem.csproj",
         "projectName": "Spac_Lagersystem",
-        "projectPath": "C:\\Users\\SPAC-25\\source\\repos\\Spac_Lagersystem\\Spac_Lagersystem\\Spac_Lagersystem.csproj",
-        "packagesPath": "C:\\Users\\SPAC-25\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\SPAC-25\\source\\repos\\Spac_Lagersystem\\Spac_Lagersystem\\obj\\",
+        "projectPath": "C:\\Users\\Spac-41\\Documents\\specialisterne\\projects\\inventory_tracker\\Spac_Lagersystem\\Spac_Lagersystem\\Spac_Lagersystem.csproj",
+        "packagesPath": "C:\\Users\\Spac-41\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Spac-41\\Documents\\specialisterne\\projects\\inventory_tracker\\Spac_Lagersystem\\Spac_Lagersystem\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\SPAC-25\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Spac-41\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
