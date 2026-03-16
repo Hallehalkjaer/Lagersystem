@@ -1,8 +1,8 @@
 import os
 import psycopg
-import requests
+import flask
 
-print("Hello world!")
+
 
 db_name = os.environ["DB_NAME"]
 db_user = os.environ["DB_USER"]
