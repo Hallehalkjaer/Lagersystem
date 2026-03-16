@@ -2,18 +2,45 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     </head>
     <body>
         <header>
-            <nav>
-                <ul>
-                    <li class="logo">
-                        <img src="images/StockFlow.png" class="icon"> 
-                    </li>
-                </ul>
-            </nav>
+            <div>
+                <nav>
+                    <img src="images/StockFlow.png" class="logo"> 
+                    <ul>
+                        <li><a href="#">Dashboard</a></li>
+                        <li><a href="#">Ordrehistorik</a></li>
+                        <li><a href="#">Lager</a></li>
+                        <li><a href="#">Rapporter</a></li>
+                        <li><a href="#">Indstillinger</a></li>
+                        <li><img src="images/alex.jpg" alt="User Profile" class="circle-pic"></li>
+                    </ul>
+                </nav>
+            </div>
         </header>
+
+        <main>
+            <section>
+                <h1>Lager</h1>
+                <div class="stats-bar">
+                    <span class="stat">Produkter: <strong>1.243</strong></span>
+                    <span class="stat">Lav lager: <strong class="warning">23</strong></span>
+                    <span class="stat">Udsolgt: <strong class="danger">4</strong></span>
+                </div>
+            </section>
+
+            <section>
+                <div class="search-bar">
+                    <input type="text" placeholder="Søg produkter, SKU eller lokation...">
+                    <button class="btn filter">Filter</button>
+                    <button class="btn export">Exporter</button>
+                    <button class="btn add">Tilføj vare</button>
+            </section>
+
+        </main>
         <script src="script.js"></script>
     </body>
 </html>
