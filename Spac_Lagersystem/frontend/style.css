@@ -98,18 +98,35 @@ section .product-overview{
     color: #e03c3c;  /* red */
 }
 
-.search-bar input{
-    background-color: #F7F7FA;
-    padding: 10px;
-    width: 40%;
+.search-bar{
+    display: flex;
+    align-items: center;
+    gap: 12px;
     margin-top: 20px;
-    margin-left: 200px;
+    padding: 0 40px;
+}
+
+.search-bar input {
+    background-color: #F7F7FA;
+    padding: 10px 16px;
+    flex: 1; 
     border: none;
     border-radius: 10px;
+    height: 40px;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
 }
-.btn{
-    margin-left: 20px;
-    padding: 7px 20px;
+.btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 20px;
+    height: 40px;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
 }
 .filter, .export{
     background-color: white;
@@ -121,4 +138,10 @@ section .product-overview{
     background-color: #6341E0;
     border: none;
     border-radius: 5px;
+}
+
+.btn img{
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
 }
