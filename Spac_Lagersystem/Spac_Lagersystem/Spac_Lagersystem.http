@@ -1,6 +1,0 @@
-@Spac_Lagersystem_HostAddress = http://localhost:5041
-
-GET {{Spac_Lagersystem_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
