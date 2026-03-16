@@ -1,52 +1,31 @@
-name: Spac_Lagersystem
 services:
-  frontend:
-    build:
-      context: frontend
-      target: development
-    networks:
-      - client-side
+  db:
+    image: postgres:18
+    environment:
+      POSTGRES_USER: webapp
+      POSTGRES_PASSWORD: very_strong_secret_password
+      POSTGRES_DB: webapp
     ports:
-      - 3000:3000
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "webapp", "-d", "webapp"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     volumes:
-      - ./frontend/src:/code/src:ro
+      - ./db_init:/docker-entrypoint-initdb.d
 
   backend:
-    build:
-      context: backend
-      target: development
+    build: .
     environment:
-      - ADDRESS=0.0.0.0:8000
-      - RUST_LOG=debug
-      - PG_DBNAME=postgres
-      - PG_HOST=db
-      - PG_USER=postgres
-      - PG_PASSWORD=mysecretpassword
-    networks:
-      - client-side
-      - server-side
-    volumes:
-      - ./backend/src:/code/src
-      - backend-cache:/code/target
-    depends_on:
-      - db
-
-  db:
-    image: postgres:12-alpine
-    restart: always
-    environment:
-      - POSTGRES_PASSWORD=mysecretpassword
-    networks:
-      - server-side
+      DB_NAME: webapp
+      DB_USER: webapp
+      DB_PASSWORD: very_strong_secret_password
+      DB_HOST: db
     ports:
-      - 5432:5432
-    volumes:
-      - db-data:/var/lib/postgresql/data
-
-networks:
-  client-side: {}
-  server-side: {}
-
-volumes:
-  backend-cache: {}
-  db-data: {}
+      - "8080:8080"
+    depends_on:
+      db:
+        condition:
+          service_healthy
+    
