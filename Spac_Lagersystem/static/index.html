@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">        
         <meta charset="UTF-8">
         <link rel="stylesheet" href="style.css">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     </head>
     <body>
         <header>
-            <div>
+            <div class="container">
                 <nav>
                     <img src="images/StockFlow.png" class="logo"> 
                     <ul>
@@ -24,20 +25,46 @@
 
         <main>
             <section>
-                <h1>Lager</h1>
-                <div class="stats-bar">
-                    <span class="stat">Produkter: <strong>1.243</strong></span>
-                    <span class="stat">Lav lager: <strong class="warning">23</strong></span>
-                    <span class="stat">Udsolgt: <strong class="danger">4</strong></span>
+                <div class="container">
+                    <h1>Lager</h1>
+                    <div class="stats-bar">
+                        <span class="stat">Produkter: <strong>1.243</strong></span>
+                        <span class="stat">Lav lager: <strong class="warning">23</strong></span>
+                        <span class="stat">Udsolgt: <strong class="danger">4</strong></span>
+                    </div>
                 </div>
             </section>
 
             <section>
-                <div class="search-bar">
-                    <input type="text" placeholder="Søg produkter, SKU eller lokation...">
-                    <button class="btn filter">Filter</button>
-                    <button class="btn export">Exporter</button>
-                    <button class="btn add">Tilføj vare</button>
+                <div class="container">
+                    <div class="search-bar">
+                        <input type="text" placeholder="Søg produkter, SKU eller lokation...">
+                        <button class="btn filter"><img src="images/filter.png">Filter</button>
+                        <button class="btn export"><img src="images/import.png">Exporter</button>
+                        <button class="btn add"><img src="images/add.png">Tilføj vare</button>
+                    </div>
+            </div>
+            </section>
+
+            <section>
+                <div>
+                    <table class="product-table">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox"></th>
+                                <th>Produktnavn</th>
+                                <th>SKU</th>
+                                <th>Lager</th>
+                                <th>Status</th>
+                                <th>Lokation</th>
+                                <th>Indstillinger</th>
+                            </tr>
+                        </thead>
+                        <tbody id="product-table-body">
+                            <!-- Rows inserted by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
             </section>
 
         </main>
