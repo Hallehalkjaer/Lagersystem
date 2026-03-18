@@ -1,7 +1,7 @@
 # save this as app.py
 import os
 import psycopg
-from flask import Flask, jsonify, request, render_template
+from flask import Flask, jsonify, request, send_from_directory
 import backend as be
 
 
@@ -14,10 +14,14 @@ books = [
 
 app = Flask(__name__)
 
+
+@app.route('/<path:path>')
+def serve_static(path):
+    return send_from_directory('static', path)
+
 @app.route("/")
-def hello():
-    return render_template('index.html')
-    #return "Hello, World!"
+def homepage():
+    return send_from_directory('static', 'index.html')
 
 
 
@@ -53,5 +57,5 @@ def UpdateBook():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', debug=True)
 

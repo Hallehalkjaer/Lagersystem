@@ -9,5 +9,5 @@ COPY requirements.txt requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Frontend code
-COPY frontend templates
+COPY static static
 CMD ["python", "app.py"]
