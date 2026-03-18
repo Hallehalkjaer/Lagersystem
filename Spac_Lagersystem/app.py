@@ -1,29 +1,153 @@
 # save this as app.py
 import os
-import psycopg
-from flask import Flask, jsonify, request, send_from_directory
-import backend as be
+from psycopg_pool import ConnectionPool
+from flask import Flask, g, jsonify, request, send_from_directory
+
+class Database:
+    def __init__(self,conn):
+        self.conn = conn
+
+    def get_filtered_data(self, lower_bound, upper_bound):
+        with self.conn.cursor() as cur:
+            return 0
+            #cur.execute()
+
+    def get_all_data(self):
+        with self.conn.cursor() as cur:
+            cur.execute("SELECT * FROM Lager")
+            data = cur.fetchall()
+            return data
 
 
+
+    def read(self, query, params=None):
+        with self.conn.cursor() as cur:
+            cur.execute(query, params)
+            return cur.fetchall()
+        
+    def write(self, query, params=None):
+        with self.conn.cursor() as cur:
+            cur.execute(query, params)
+
+
+app = Flask(__name__)
+
+
+"""
+DB has columns:
+    ProductID               serial PRIMARY KEY
+    ProductName             varchar[255]
+    ProductStockQuantity    integer
+    ProductLocation         varchar[255]
+    ProductStatus           varchar[255]
+
+"""
+
+db_name = os.environ["DB_NAME"]
+db_user = os.environ["DB_USER"]
+db_pw   = os.environ["DB_PASSWORD"]
+db_host = os.environ["DB_HOST"]
+
+conn_str =    f"dbname   = {db_name} \
+                user     = {db_user} \
+                host     = {db_host} \
+                password = {db_pw}"
+
+#os.system("echo "+conn_str)
+
+pool = ConnectionPool(conn_str)
+#conn = psycopg.connect(conn_str)
+
+# A way of getting the database within the context of the event handlers
+def get_db():
+    if "db" not in g:
+        conn = pool.getconn()
+        g.db = Database(conn)
+        g._conn = conn
+    return g.db
+
+# Close connection to db when app closes
+@app.teardown_appcontext
+def close_db(exception):        
+    conn = g.pop("_conn", None)
+    if conn is not None:
+        pool.putconn(conn)
+
+
+
+# Serves the CSS styling and the homepage images etc.
+@app.route("/<path:path>")
+def serve_static(path):
+    return send_from_directory("static", path)
+
+# Serves the HTML in the homepage
+@app.route("/")
+def homepage():
+    return send_from_directory("static", "index.html")
+
+# Event handler for the "add" button
+@app.route("/add_smth")
+def get_something():
+    db = get_db()
+    data = db.get_all_data()
+    print(data)
+    return data
+
+@app.route("/loadProducts")
+def loadProducts():
+    db = get_db()
+    data = db.get_all_data()
+    return data
+
+# These two event handlers should be swapped. This is just for testing
+@app.route("/get_smth")
+def add_something():
+
+
+    #os.system("echo Python sees that the button has been pressed")
+    #query = "INSERT INTO test (ProductName, ProductStockQuantity, ProductLocation, ProductStatus) \
+    #                VALUES (%(ProductName)s, %(ProductStockQuantity)s, %(ProductLocation)s, %(ProductStatus)s);"
+    param_dict = {  #"Name":       "Dette er en test",
+                    #"Stock":      45,
+                    #"Location":   "Ballerup",
+                    "Status":      "OK"
+                    }
+    query = "smth"
+
+
+
+    with conn.cursor() as cur:
+        # This works:
+        # "INSERT INTO test (ProductStockQuantity) VALUES (%s);", [45,]
+        cur.execute("INSERT INTO Lager (ProductStatus) VALUES (%s);", ("OK",))
+    
+    
+    
+    #query = "INSERT INTO test (ProductID, ProductName, ProductStockQuantity, ProductLocation, ProductStatus) VALUES (420, \"Hejsa\", 69, \"Ballerup\", \"OK\")"
+    #out = db.write(query, ("ok"))
+    return "return string"
+    """
+    with conn.cursor() as cur:
+        cur.execute("POST TO test ")
+        record = cur.fetchone()
+        return record[0].isoformat()
+    """
+
+
+
+
+
+
+
+
+
+"""
 #dummy data used for testing
 books = [
     {"id": 1, "title": "Concept of Physics", "author": "H.C Verma"},
     {"id": 2, "title": "Gunahon ka Devta", "author": "Dharamvir Bharti"},
     {"id": 3, "title": "Problems in General Physsics", "author": "I.E Irodov"}
 ]
-
-app = Flask(__name__)
-
-
-@app.route('/<path:path>')
-def serve_static(path):
-    return send_from_directory('static', path)
-
-@app.route("/")
-def homepage():
-    return send_from_directory('static', 'index.html')
-
-
 
 @app.route("/books", methods=["GET"])
 def GetAllBooks():
@@ -53,6 +177,8 @@ def UpdateBook():
     author = request.args.get('book_author')
 
     return be.UpdateBook(num, title, author)
+
+"""
 
 
 

@@ -1,5 +1,5 @@
 import os
-import psycopg
+#import psycopg
 
 
 class Database:
@@ -11,9 +11,9 @@ class Database:
             cur.execute(query, params)
             return cur.fetchall()
         
-        def write(self, query, params=None):
-            with self.conn.cursor() as cur:
-                cur.execute(query, params)
+    def write(self, query, params=None):
+        with self.conn.cursor() as cur:
+            cur.execute(query, params)
 
 # ================ Program setup ================
 if __name__ == "__main__":

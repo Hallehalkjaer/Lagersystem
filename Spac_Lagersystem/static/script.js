@@ -1,13 +1,32 @@
+const btn = document.getElementById("add")
+
+
+btn.addEventListener("click", function(){
+    fetch("/add_smth")
+        .then(response => response.text())
+        .then(text =>  console.log(text));
+})
+
+
+
 async function loadProducts() {
 
     //const response = await fetch('your-api-endpoint');
-    const products = [
-        { navn: "Sko", sku: "22341", lager: 52, status: "OK", lokation: "Ballerup" },
-        { navn: "T-shirt", sku: "88321", lager: 10, status: "Lav lager", lokation: "Odense" },
-        { navn: "Jakke #1", sku: "55321", lager: 200, status: "OK", lokation: "Aarhus" },
-        { navn: "Bukser", sku: "25321", lager: 0, status: "Udsolgt", lokation: "København" },
-        { navn: "Undertøj", sku: "78321", lager: 300, status: "OK", lokation: "Ballerup" },
-    ];;
+    var stuff = await fetch("/loadProducts")
+        .then(response => response.json())
+        .then(data =>  stuff = data);
+
+
+    // Format retrieved data for displaying
+    var products = [];
+    stuff.forEach(row => {
+        products.push({
+            navn:       row[0],
+            sku:        row[1], 
+            lager:      row[2],
+            lokation:   row[3]
+        });
+    });
 
     const tbody = document.getElementById('product-table-body');
 
