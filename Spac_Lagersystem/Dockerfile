@@ -9,6 +9,5 @@ COPY requirements.txt requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Frontend code
-COPY frontend frontend
-
-CMD ["flask", "run", "--host=0.0.0.0"]
+COPY frontend templates
+CMD ["python", "app.py"]

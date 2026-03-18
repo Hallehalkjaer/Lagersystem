@@ -15,7 +15,7 @@ services:
     volumes:
       - ./db_init:/docker-entrypoint-initdb.d
 
-  backend:
+  python_webapp:
     build: .
     environment:
       DB_NAME: webapp

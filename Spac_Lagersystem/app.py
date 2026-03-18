@@ -1,7 +1,7 @@
 # save this as app.py
 import os
 import psycopg
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 import backend as be
 
 
@@ -16,7 +16,10 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    return "Hello, World!"
+    return render_template('index.html')
+    #return "Hello, World!"
+
+
 
 @app.route("/books", methods=["GET"])
 def GetAllBooks():
@@ -48,4 +51,7 @@ def UpdateBook():
     return be.UpdateBook(num, title, author)
 
 
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0')
 

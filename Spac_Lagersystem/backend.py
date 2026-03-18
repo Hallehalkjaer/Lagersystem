@@ -16,44 +16,45 @@ class Database:
                 cur.execute(query, params)
 
 # ================ Program setup ================
-db_name = os.environ["DB_NAME"]
-db_user = os.environ["DB_USER"]
-db_pw   = os.environ["DB_PASSWORD"]
-db_host = os.environ["DB_HOST"]
+if __name__ == "__main__":
+    db_name = os.environ["DB_NAME"]
+    db_user = os.environ["DB_USER"]
+    db_pw   = os.environ["DB_PASSWORD"]
+    db_host = os.environ["DB_HOST"]
 
-conn_str =    f"dbname   = {db_name} \
-                user     = {db_user} \
-                host     = {db_host} \
-                password = {db_pw}"
+    conn_str =    f"dbname   = {db_name} \
+                    user     = {db_user} \
+                    host     = {db_host} \
+                    password = {db_pw}"
 
-# Connect to an existing database
-with psycopg.connect(conn_str) as conn:
+    # Connect to an existing database
+    with psycopg.connect(conn_str) as conn:
 
-    db = Database(conn)
-    # Now we cean read with write from the database
+        db = Database(conn)
+        # Now we cean read with write from the database
 
-    # ================ Main loop ================
-    while True:
-        inp_raw = app.get_query()
-        # Hold up a minute... There was something about having to do HTTP
+        # ================ Main loop ================
+        while True:
+            inp_raw = "DO nothing"
+            # Hold up a minute... There was something about having to do HTTP
 
-        [op, query] = inp_raw.split(" ")
+            [op, query] = inp_raw.split(" ")
 
-        match op:
-            case "GET":
-                response = db.read(query)
-                # Do some more
-            case "POST":
-                db.write(query)
-                # Do some more?
-            case "PUT":
-                print("PUT operation not implemented yet")
-                # Do something
-            case "DELETE":
-                print("DELETE operation not implemented yet")
-                # Do something
-        
-        conn.commit()
+            match op:
+                case "GET":
+                    response = db.read(query)
+                    # Do some more
+                case "POST":
+                    db.write(query)
+                    # Do some more?
+                case "PUT":
+                    print("PUT operation not implemented yet")
+                    # Do something
+                case "DELETE":
+                    print("DELETE operation not implemented yet")
+                    # Do something
+            
+            conn.commit()
 
         
 
