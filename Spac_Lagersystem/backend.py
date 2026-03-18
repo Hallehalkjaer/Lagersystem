@@ -1,16 +1,67 @@
 import os
 import psycopg
-import flask
 
 
+class Database:
+    def __init__(self,conn):
+        self.conn = conn
 
+    def read(self, query, params=None):
+        with self.conn.cursor() as cur:
+            cur.execute(query, params)
+            return cur.fetchall()
+        
+        def write(self, query, params=None):
+            with self.conn.cursor() as cur:
+                cur.execute(query, params)
+
+# ================ Program setup ================
 db_name = os.environ["DB_NAME"]
 db_user = os.environ["DB_USER"]
 db_pw   = os.environ["DB_PASSWORD"]
 db_host = os.environ["DB_HOST"]
 
+conn_str =    f"dbname   = {db_name} \
+                user     = {db_user} \
+                host     = {db_host} \
+                password = {db_pw}"
+
 # Connect to an existing database
-with psycopg.connect(f"dbname={db_name} user={db_user} host={db_host} password={db_pw}") as conn:
+with psycopg.connect(conn_str) as conn:
+
+    db = Database(conn)
+    # Now we cean read with write from the database
+
+    # ================ Main loop ================
+    while True:
+        inp_raw = app.get_query()
+        # Hold up a minute... There was something about having to do HTTP
+
+        [op, query] = inp_raw.split(" ")
+
+        match op:
+            case "GET":
+                response = db.read(query)
+                # Do some more
+            case "POST":
+                db.write(query)
+                # Do some more?
+            case "PUT":
+                print("PUT operation not implemented yet")
+                # Do something
+            case "DELETE":
+                print("DELETE operation not implemented yet")
+                # Do something
+        
+        conn.commit()
+
+        
+
+
+
+
+    # Old code
+    """
 
     # Open a cursor to perform database operations
     with conn.cursor() as cur:
@@ -38,3 +89,4 @@ with psycopg.connect(f"dbname={db_name} user={db_user} host={db_host} password={
 
         # Make the changes to the database persistent
         conn.commit()
+    """
