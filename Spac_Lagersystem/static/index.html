@@ -24,50 +24,75 @@
         </header>
 
         <main>
-            <section>
-                <div class="container">
-                    <h1>Lager</h1>
-                    <div class="stats-bar">
-                        <span class="stat">Produkter: <strong>1.243</strong></span>
-                        <span class="stat">Lav lager: <strong class="warning">23</strong></span>
-                        <span class="stat">Udsolgt: <strong class="danger">4</strong></span>
-                    </div>
-                </div>
-            </section>
-
-            <section>
-                <div class="container">
-                    <div class="search-bar">
-                        <input type="text" placeholder="Søg produkter, SKU eller lokation...">
-                        <button class="btn filter"><img src="images/filter.png">Filter</button>
-                        <button class="btn export"><img src="images/import.png">Exporter</button>
-                        <button class="btn add" id="add"><img src="images/add.png">Tilføj vare</button>
-                    </div>
+    <section>
+        <div class="container">
+            <h1>Lager</h1>
+            <div class="stats-bar">
+                <span class="stat">Produkter: <strong>1.243</strong></span>
+                <span class="stat">Lav lager: <strong class="warning">23</strong></span>
+                <span class="stat">Udsolgt: <strong class="danger">4</strong></span>
             </div>
-            </section>
+        </div>
+    </section>
 
-            <section>
-                <div>
-                    <table class="product-table">
-                        <thead>
-                            <tr>
-                                <th><input type="checkbox"></th>
-                                <th>Produktnavn</th>
-                                <th>SKU</th>
-                                <th>Lager</th>
-                                <th>Status</th>
-                                <th>Lokation</th>
-                                <th>Indstillinger</th>
-                            </tr>
-                        </thead>
-                        <tbody id="product-table-body">
-                            <!-- Rows inserted by JavaScript -->
-                        </tbody>
-                    </table>
+    <section>
+        <div class="container">
+            <div class="search-bar">
+                <input type="text" placeholder="Søg produkter, SKU eller lokation...">
+                <button class="btn filter" id="filter-button"><img src="images/filter.png">Filter</button>
+                <button class="btn export"><img src="images/import.png">Exporter</button>
+                <button class="btn add" id="add"><img src="images/add.png">Tilføj vare</button>
+            </div>
+        </div>
+
+        <div class="modal-overlay" id="add-modal-overlay">
+            <div class="add-modal">
+                <h2>Tilføj vare</h2>
+                <div class="modal-field">
+                    <label>Produktnavn</label>
+                    <input type="text" id="input-navn" placeholder="f.eks. Sko" />
                 </div>
-            </section>
+                <div class="modal-field">
+                    <label>SKU</label>
+                    <input type="number" id="input-sku" placeholder="f.eks. 22341" />
+                </div>
+                <div class="modal-field">
+                    <label>Antal på lager</label>
+                    <input type="number" id="input-lager" placeholder="f.eks. 50" />
+                </div>
+                <div class="modal-field">
+                    <label>Lokation</label>
+                    <input type="text" id="input-lokation" placeholder="f.eks. Ballerup" />
+                </div>
+                <div class="modal-buttons">
+                    <button class="btn filter" id="modal-cancel">Annuller</button>
+                    <button class="btn add" id="modal-submit">Tilføj</button>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        </main>
+    <section>
+        <div>
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox"></th>
+                        <th>Produktnavn</th>
+                        <th>SKU</th>
+                        <th>Lager</th>
+                        <th>Status</th>
+                        <th>Lokation</th>
+                        <th>Indstillinger</th>
+                    </tr>
+                </thead>
+                <tbody id="product-table-body">
+                    <!-- Rows inserted by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
         <script src="script.js"></script>
     </body>
 </html>

@@ -133,7 +133,25 @@ def add_something():
         return record[0].isoformat()
     """
 
+@app.route("/addProduct", methods=["POST"])
+def addProduct():
+    db = get_db()
+    data = request.get_json()
+    with db.conn.cursor() as cur:
+        cur.execute(
+            "INSERT INTO Lager (ProductName, ProductID, ProductStockQuantity, ProductLocation) VALUES (%s, %s, %s, %s)",
+            (data["navn"], data["sku"], data["lager"], data["lokation"])
+        )
+        db.conn.commit()
+    return "Tilføjet", 200
 
+@app.route("/deleteProduct/<int:product_id>", methods=["DELETE"])
+def deleteProduct(product_id):
+    db = get_db()
+    with db.conn.cursor() as cur:
+        cur.execute("DELETE FROM Lager WHERE ProductID = %s", (product_id,))
+        db.conn.commit()
+    return "Deleted", 200
 
 
 
