@@ -103,7 +103,6 @@ def loadProducts():
 @app.route("/get_smth")
 def add_something():
 
-
     #os.system("echo Python sees that the button has been pressed")
     #query = "INSERT INTO test (ProductName, ProductStockQuantity, ProductLocation, ProductStatus) \
     #                VALUES (%(ProductName)s, %(ProductStockQuantity)s, %(ProductLocation)s, %(ProductStatus)s);"
@@ -201,5 +200,5 @@ def UpdateBook():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', debug=True)
+    app.run(host='0.0.0.0')
 
